@@ -1,0 +1,15 @@
+{
+	"name": "capitaldnrf",
+	"version": "1.0.0",
+	"description": "A form to increase accuracy and ease of use when requesting a document number.",
+	"main": "index.js",
+	"scripts": {
+		"test": "jest"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"devDependencies": {
+		"jest": "^29.5.0"
+	}
+}
