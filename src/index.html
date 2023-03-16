@@ -6,7 +6,10 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Capital Document Number Request Form</title>
 		<link rel="stylesheet" type="text/css" href="style.css" />
-        <meta name="description" content="A form that allows TfL workers to request document identification numbers for sharing." />
+		<meta
+			name="description"
+			content="A form that allows TfL workers to request document identification numbers for sharing."
+		/>
 	</head>
 	<body>
 		<nav></nav>
@@ -14,7 +17,9 @@
 			<form>
 				<label>
 					Project
-					<input type="text" name="project" required />
+					<select name="project" required>
+						<option value="">Unknown</option>
+					</select>
 				</label>
 				<label>
 					Document Revision
@@ -73,5 +78,22 @@
 			</form>
 		</main>
 		<footer></footer>
+
+		<script lang="javascript">
+			fetch('/fixtures/projects.json')
+				.then(r => r.json())
+				.then(({projects}) => projects)
+				.then(projects => {
+					const projectsDropdown = document.getElementsByName('project')[0];
+
+					projects.forEach(project => {
+						const option = document.createElement('option');
+						option.value = project.name;
+						option.innerText = `${project.name} (${project.number})`;
+
+						projectsDropdown.appendChild(option);
+					});
+				});
+		</script>
 	</body>
 </html>
