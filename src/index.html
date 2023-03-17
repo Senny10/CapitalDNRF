@@ -86,14 +86,29 @@
 				.then(projects => {
 					const projectsDropdown = document.getElementsByName('project')[0];
 
+
 					projects.forEach(project => {
 						const option = document.createElement('option');
 						option.value = project.name;
 						option.innerText = `${project.name} (${project.number})`;
 
 						projectsDropdown.appendChild(option);
+						projectsDropdown.addEventListener('change', () => {
+							const emailAddress = document.getElementsByName('project_email');
+						
+							console.log("this works");
+						});
 					});
 				});
+
+			// addEventListener - a function that runs when the project name dropdown changes.
+			// inside the event listener - just fill the email field with something random.
+			// Date.now();
+			// Store the list of projects somewhere globally accessable
+			// window.__projects = projects - inside the last then on the fetch
+			// inside the event listener filter the list of projects based on the selection
+			//    window.__projects.find(p => p.name === dropdown.value)
+			// set the value of the email input to the value of project.email
 		</script>
 	</body>
 </html>
