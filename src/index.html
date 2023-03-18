@@ -80,29 +80,36 @@
 		<footer></footer>
 
 		<script lang="javascript">
-			fetch('/fixtures/projects.json')
-				.then(r => r.json())
-				.then(({projects}) => projects)
-				.then(projects => {
-					const projectsDropdown = document.getElementsByName('project')[0];
-
-
-					projects.forEach(project => {
-						const option = document.createElement('option');
-						option.value = project.name;
-						option.innerText = `${project.name} (${project.number})`;
-
-						projectsDropdown.appendChild(option);
-						projectsDropdown.addEventListener('change', () => {
-							const emailAddress = document.getElementsByName('project_email');
-						
-							console.log("this works");
-						});
-					});
-				});
+			const projectsDropdown = document.getElementsByName('project')[0];
+			const projectEmailElement = document.getElementsByName('project_email')[0];
 
 			// addEventListener - a function that runs when the project name dropdown changes.
 			// inside the event listener - just fill the email field with something random.
+			projectsDropdown.addEventListener('change', (e) => {
+				e.preventDefault()
+				const value = e.target.value;
+				const selectedProject = window.__projects.find((p => p.number === value));
+				if (selectedProject){
+					projectEmailElement.value = selectedProject.email;
+				}
+			});
+
+			async function populateProjects(select){
+				const response = await fetch('/fixtures/projects.json');
+				const { projects } = await response.json();
+
+				window.__projects = projects;
+
+				for (const project of projects) {
+					console.log(project);
+					const option = document.createElement('option');
+					option.value = project.name;
+					option.innerText = `${project.name} (${project.number})`;
+				select.appendChild(option);
+				}
+			}
+			
+			populateProjects(projectsDropdown)
 			// Date.now();
 			// Store the list of projects somewhere globally accessable
 			// window.__projects = projects - inside the last then on the fetch
