@@ -20,8 +20,8 @@ dd {
 }
 
 /* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
-ul[role='list'],
-ol[role='list'] {
+ul[role="list"],
+ol[role="list"] {
   list-style: none;
 }
 
@@ -60,9 +60,9 @@ select {
 /* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
 @media (prefers-reduced-motion: reduce) {
   html:focus-within {
-   scroll-behavior: auto;
+    scroll-behavior: auto;
   }
-  
+
   *,
   *::before,
   *::after {
@@ -74,47 +74,49 @@ select {
 }
 
 form {
-    margin: 0 auto;
+  margin: 0 auto;
 }
 
 @media only screen and (max-width: 600px) {
-    form {
-        max-width: 95%;
-    }
+  form {
+    max-width: 95%;
+  }
 }
 
 @media only screen and (min-width: 600px) and (max-width: 1024px) {
-    form {
-        max-width: 80%;
-    }
+  form {
+    max-width: 80%;
+  }
 }
 
 @media only screen and (min-width: 1024px) and (max-width: 1400px) {
-    form {
-        max-width: 60%;
-    }
+  form {
+    max-width: 60%;
+  }
 }
 
 @media only screen and (min-width: 1400px) {
-    form {
-        max-width: 40%;
-    }
+  form {
+    max-width: 40%;
+  }
 }
 
 form input,
 form button,
 form textarea,
 form select {
-    display: block;
-    width: 100%;
-    margin: 5px auto;
+  display: block;
+  width: 100%;
+  margin: 5px auto;
+  padding: 1px 2px;
+  height: 30px;
 }
 
 form button {
-    background-color: green;
-    border-color: green;
-    border-radius: 3px;
-    margin: 10px auto;
-    color: white;
-    font-weight: bolder;
+  background-color: green;
+  border-color: green;
+  border-radius: 3px;
+  margin: 10px auto;
+  color: white;
+  font-weight: bolder;
 }
