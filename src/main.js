@@ -10,6 +10,7 @@ function configureState() {
     window.__state.projects = [];
     window.__state.projectsSelectEl = document.getElementsByName('project')[0];
     window.__state.projectEmailEl = document.getElementsByName('project_email')[0];
+
 }
 
 async function populateProjects() {
@@ -32,8 +33,6 @@ function onChangeProject(ev) {
 
     if (selectedProject) {
         window.__state.projectEmailEl.value = selectedProject.email;
-    } else {
-        window.__state.projectEmailEl.value = '';
     }
 }
 
@@ -52,16 +51,3 @@ document.addEventListener('DOMContentLoaded', async function () {
 configureState({
 
 });
-
-
-// Adapt the other input fields to select dropdowns where needed.
-// When project not listed is selected,
-//    display an additional input underneath that allows the user to enter:
-//         * project name
-//         * project code
-// When the user submits the form (clicks button or presses enter)
-//     either console.table the information from the form
-//     or javascript alert() to show the data.
-//         Use: addEventListener on the form.
-//         Gotcha: when you submit the form the page will reload,
-//                 work out how to stop the browser reloading.
