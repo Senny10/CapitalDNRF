@@ -14,61 +14,80 @@
   <body>
     <nav></nav>
     <main>
-      <form>
-        <label>
+      <form method="post" id="dnrf-form">
+        <label for="project">
           Project
           <select name="project" required>
-            <option value=""></option>
+            <option value="" selected></option>
             <option value="none">Project Not Listed</option>
           </select>
         </label>
         <label>
           Document Revision
-          <input type="text" name="document_revision" />
+          <select name="document_revision" required>
+            <option value="document first draft" selected>P01</option>
+            <option value="drawing first draft">C01</option>
+          </select>
         </label>
         <label>
           Document Title
-          <input type="text" name="document_title" />
+          <input type="text" name="document_title" required/>
         </label>
         <label>
           Purpose of Issue
-          <input type="text" name="document_issue_reason" />
+          <select name="reason_for_issue" required>
+            <option value="none">--</option>
+            <option value="for information">For Information</option>
+            <option value="for acceptance">For Acceptance</option>
+          </select>
         </label>
         <label>
           Asset Class
-          <input type="text" name="asset_class" />
+          <select name="asset_class" required>
+            <option value = " "> </option>
+          </select>
         </label>
         <label>
           Information Type
-          <input type="text" name="information_type" />
+          <select name="information_type" required>
+            <option value = " "> </option>
+          </select>
         </label>
         <label>
           Discipline
-          <input type="text" name="discipline" />
+          <select name="discipline" required>
+            <option value = " "> </option>
+          </select>
         </label>
         <label>
           Suitability
-          <input type="text" name="suitability" />
+          <select name="suitability" required>
+            <option value = " "> </option>
+          </select>
         </label>
         <label>
           TfL Security Classification
-          <input type="text" name="security_classification" />
+          <select name="security_classification" required>
+            <option value = " "> </option>
+          </select>
         </label>
         <label>
           Project Stage
-          <input type="text" name="project_stage" />
+          <select name="project_stage" required>
+            <option value = " "> </option>
+          </select>
         </label>
         <label>
           Handover Information
-          <input type="text" name="handover_information" />
+          <input type="checkbox" name="handover_information" />
         </label>
         <label>
           Health &amp; Safety File
-          <input type="text" name="health_and_safety_file" />
+          <input type="checkbox" name="health_and_safety_file" />
         </label>
         <label>
           Requested by
-          <input type="text" name="requested_by" />
+          <input type="text" name="requested_by" required/>
         </label>
         <label>
           Project Email Address
