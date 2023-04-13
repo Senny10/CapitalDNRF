@@ -1,14 +1,17 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
+import logo from './logo.svg';
 
 function App() {
+  const [text, setText] = useState('');
+
   return (
     <div className="App">
       <header className="App-header">
+        <input type="text" value={text} onChange={e => setText(e.target.value)} />
         <img src={logo} className="App-logo" alt="logo" />
         <p>
-          Edit <code>src/App.tsx</code> and save to reload.
+          {text}
         </p>
         <a
           className="App-link"
