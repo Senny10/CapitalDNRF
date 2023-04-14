@@ -2,45 +2,39 @@
 
 function configureState() {
     window.__state = window.__state || {};
-
-    window.__state.projects = [];
-    window.__state.revisions = [];
-    window.__state.purpose_of_issue = [];
-    window.__state.asset_class = [];
-    window.__state.information_type = [];
-    window.__state.discipline = [];
-    window.__state.suitability = [];
-    window.__state.security_classification = [];
-    window.__state.project_stage = [];
     window.__state.form = document.getElementById('dnrf-form');
+    window.__state.settings_form = document.getElementById('settings');
 }
 
 async function populateDropdowns() {
-    const response = await fetch('/fixtures/projects.json');
-    const { projects, revisions, purpose_of_issue, asset_class, information_type, discipline, suitability, security_classification, project_stage } = await response.json();
+    const response = await fetch('/fixtures/data.json');
+    const { options } = await response.json();
 
-    window.__state.projects = projects;
-    window.__state.revisions = revisions;
-    window.__state.purpose_of_issue = purpose_of_issue;
-    window.__state.asset_class = asset_class;
-    window.__state.security_classification = security_classification;
-    window.__state.project_stage = project_stage;
-    window.__state.suitability = suitability;
-    window.__state.information_type = information_type;
-    window.__state.discipline = discipline;
+    options.project = [
+        ...options.project,
+        ...pullProjectMappingsFromStorage(),
+    ];
+    
+    window.__state.option_data = options;
 
-
-    for (const project of projects) {
-        const option = document.createElement('option');
-        option.value = project.name;
-        option.innerText = `${project.name} (${project.number})`;
-        window.__state.form.elements['project'].appendChild(option);
+    for (const name of Object.keys(options)) {
+        for (const option of options[name]) {
+            const optionElement = document.createElement('option');
+            
+            optionElement.value = option.id;
+            optionElement.innerText = option.label;
+            window.__state.form.elements[name].appendChild(optionElement);
+        }
     }
+}
+
+function idToLabel(option, id) {
+    return window.__state.option_data[option].find(o => o.id === id)?.label;
 }
 
 function onChangeProject(ev) {
     const value = ev.target.value;
-    const selectedProject = window.__state.projects.find((p) => p.name === value);
+    const selectedProject = window.__state.option_data.project.find((p) => p.id === value);
 
     window.__state.form.elements['project_email'].value = selectedProject?.email ?? '';
 }
@@ -72,7 +66,7 @@ Information:
   - ${documentTitle}
   - ${reasonForIssue}
   - ${assetClass}
-  - ${informationType}
+  - ${idToLabel('information_type', informationType)}
   - ${discipline}
   - ${suitability}
   - ${securityClassification}
@@ -89,6 +83,29 @@ Information:
 
     return false;
 }
+
+function pullProjectMappingsFromStorage() {
+    try {
+        const projectEmailMappingStored = window.localStorage.getItem('project_email_mappings');
+        const {settings_form} = window.__state;
+        const parsedMapping = JSON.parse(projectEmailMappingStored);
+
+        settings_form.elements['project_emails_mapping'].value = JSON.stringify(parsedMapping, null, 2);
+        return parsedMapping;
+    } catch (e) {
+        return [];
+    }
+}
+
+function saveProjectEmailMappings(e) {
+    e.preventDefault();
+    // Get the form element
+    const {settings_form} = window.__state;
+
+    window.localStorage.setItem('project_email_mappings', settings_form.elements['project_emails_mapping'].value);
+    return false;
+}
+
 // when document/page loads, set up everything
 document.addEventListener('DOMContentLoaded', async function () {
     // Set initial state
@@ -96,10 +113,13 @@ document.addEventListener('DOMContentLoaded', async function () {
 
     // Fetch data and populate dropdown menus
     await populateDropdowns();
+    
+    pullProjectMappingsFromStorage();
 
     // Setup our event listeners
     window.__state.form.elements['project'].addEventListener('change', onChangeProject);
     window.__state.form.addEventListener('submit', submitForm);
+    window.__state.settings_form.addEventListener('submit', saveProjectEmailMappings);
 });
 
 configureState({});
