@@ -1,0 +1,17 @@
+{
+    "options": {
+        "project": [{
+            "id": "TEST000000",
+            "label": "Test Project (TEST000000)",
+            "email": "test@example.com"
+        }],
+        "asset_class": [{
+            "id": "test",
+            "label": "test asset class"
+        }],
+        "information_type": [{
+            "id": "drg_drawing",
+            "label": "DRG Drawing"
+        }]
+    }
+}
