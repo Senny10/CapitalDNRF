@@ -1,71 +1,83 @@
 import React, { useState } from 'react';
+import { useForm } from 'react-hook-form';
 import './App.css';
 
 function App() {
   const [text, setText] = useState('');
- 
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+  const onSubmit = (data: any) => {
+    console.log(data);
+  };
   return (
-    <main className="App">
-     <form method="post" id="dnrf-form">
-      <label htmlFor="project">
-        Project
-          <input type="text" value={text} onChange={e => setText(e.target.value)} />
-      </label>
-      <label htmlFor='doc_rev'>
-          Document Revision
-          <input type="text" value={text} onChange={e => setText(e.target.value)} />
-        </label>
-        <label htmlFor='doc_title'>
-          Document Title
-          <input type="text" value={text} onChange={e => setText(e.target.value)} />
-        </label>
-        <label htmlFor='purpose_of_issue'>
-          Purpose of Issue
-          <input type="text" value={text} onChange={e => setText(e.target.value)} />
-        </label>
-        <label htmlFor='asset'>
-          Asset Class
-          <input type="text" value={text} onChange={e => setText(e.target.value)} />
-        </label>
-        <label htmlFor='information_type'>
-          Information Type
-          <input type="text" value={text} onChange={e => setText(e.target.value)} />
-        </label>
-        <label htmlFor='discipline'>
-          Discipline
-          <input type="text" value={text} onChange={e => setText(e.target.value)} />
-        </label>
-        <label htmlFor='suitability'>
-          Suitability
-          <input type="text" value={text} onChange={e => setText(e.target.value)} />
-        </label>
-        <label htmlFor='security_class'>
-          TfL Security Classificaton
-          <input type="text" value={text} onChange={e => setText(e.target.value)} />
-        </label>
-        <label htmlFor='project_stage'>
-          Project Stage
-          <input type="text" value={text} onChange={e => setText(e.target.value)} />
-        </label>
-        <label htmlFor='handover'>
-          Handover Information
-          <input type="text" value={text} onChange={e => setText(e.target.value)} />
-        </label>
-        <label htmlFor='hs_file'>
-        Health &amp; Safety File
-          <input type="text" value={text} onChange={e => setText(e.target.value)} />
-        </label>
-        <label htmlFor='requested_by'>
-          Requested by
-          <input type="text" value={text} onChange={e => setText(e.target.value)} />
-        </label>
-        <label htmlFor='project_email'>
-          Project Email Address
-          <input type="text" value={text} onChange={e => setText(e.target.value)} />
-        </label>
+    <div className="App">
+     <form onSubmit={handleSubmit(onSubmit)}>
+        <div className="form-control">
+          <label>Project</label>
+          <input type="text" {...register("project")} name='project' />
+        </div>
+        <div className="form-control">
+          <label>Document Revision</label>
+          <input type="text" {...register("project")} name='project' />
+        </div>
+        <div className="form-control">
+          <label>Document Title</label>
+          <input type="text" {...register("project")} name='project' />
+        </div>
+        <div className="form-control">
+          <label>Purpose of Issue</label>
+          <input type="text" {...register("project")} name='project' />
+        </div>
+        <div className="form-control">
+          <label>Asset Class</label>
+          <input type="text" {...register("project")} name='project' />
+        </div>
+        <div className="form-control">
+          <label>Information Type</label>
+          <input type="text" {...register("project")} name='project' />
+        </div>
+        <div className="form-control">
+          <label>Discipline</label>
+          <input type="text" {...register("project")} name='project' />
+        </div>
+        <div className="form-control">
+          <label>Suitability</label>
+          <input type="text" {...register("project")} name='project' />
+        </div>
+        <div className="form-control">
+          <label>TfL Security Classification</label>
+          <input type="text" {...register("project")} name='project' />
+        </div>
+        <div className="form-control">
+          <label>Project Stage</label>
+          <input type="text" {...register("project")} name='project' />
+        </div>
+        <div className="form-control">
+          <label>Handover Information</label>
+          <input type="text" {...register("project")} name='project' />
+        </div>
+        <div className="form-control">
+          <label>Health &amp; Safety File</label>
+          <input type="text" {...register("project")} name='project' />
+        </div>
+        <div className="form-control">
+          <label>Requested by:</label>
+          <input type="text" {...register("project")} name='project' />
+        </div>
+        <div className="form-control">
+          <label>Project Email Address</label>
+          <input type="text" {...register("project")} name='project' />
+        </div>
+        <div className="form-control">
+          <label></label>
+          <button type="submit">Send</button>
+        </div>
      </form>
       
-    </main>
+    </div>
   );
 }
 
