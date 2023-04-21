@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useForm } from 'react-hook-form';
 import './App.css';
 
 function App() {
-  const [text, setText] = useState('');
   const {
     register,
     handleSubmit,
@@ -14,69 +13,139 @@ function App() {
   };
   return (
     <div className="App">
-     <form onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <div className="form-control">
           <label>Project</label>
-          <input type="text" {...register("project")} name='project' />
+          <input type='project' {...register('project', {
+            required: true
+          })} name='project' />
+          {errors.project && errors.project.type === "required" && (
+            <p className="errorMsg">Project number is required.</p>
+          )}
         </div>
         <div className="form-control">
           <label>Document Revision</label>
-          <input type="text" {...register("project")} name='project' />
+          <input type='docrev' {...register('docrev', {
+            required: true
+          })} name='docrev' />
+          {errors.docrev && errors.docrev.type === "required" && (
+            <p className="errorMsg">Document revision is required.</p>
+          )}
         </div>
         <div className="form-control">
           <label>Document Title</label>
-          <input type="text" {...register("project")} name='project' />
+          <input type='doctitle' {...register('doctitle', {
+            required: true
+          })} name='doctitle' />
+          {errors.doctitle && errors.doctitle.type === "required" && (
+            <p className="errorMsg">Document title is required.</p>
+          )}
         </div>
         <div className="form-control">
           <label>Purpose of Issue</label>
-          <input type="text" {...register("project")} name='project' />
+          <input type='purpOfIssue' {...register('purpOfIssue', {
+            required: true
+          })} name='purpOfIssue' />
+          {errors.purpOfIssue && errors.purpOfIssue.type === "required" && (
+            <p className="errorMsg">Document purpose of issue is required.</p>
+          )}
         </div>
         <div className="form-control">
           <label>Asset Class</label>
-          <input type="text" {...register("project")} name='project' />
+          <input type='assetclass' {...register('assetclass', {
+            required: true
+          })} name='assetclass' />
+          {errors.assetclass && errors.assetclass.type === "required" && (
+            <p className="errorMsg">Document asset case required.</p>
+          )}
         </div>
         <div className="form-control">
           <label>Information Type</label>
-          <input type="text" {...register("project")} name='project' />
+          <input type='infotype' {...register('infotype', {
+            required: true
+          })} name='infotype' />
+          {errors.infotype && errors.infortype.type === "required" && (
+            <p className="errorMsg">Document type is required.</p>
+          )}
         </div>
         <div className="form-control">
           <label>Discipline</label>
-          <input type="text" {...register("project")} name='project' />
+          <input type='discipline' {...register('discipline', {
+            required: true
+          })} name='discipline' />
+          {errors.discipline && errors.discipline.type === "required" && (
+            <p className="errorMsg">Document discipline of issue is required.</p>
+          )}
         </div>
         <div className="form-control">
           <label>Suitability</label>
-          <input type="text" {...register("project")} name='project' />
+          <input type='suitability' {...register('suitability', {
+            required: true
+          })} name='suitability' />
+          {errors.suitability && errors.suitability.type === "required" && (
+            <p className="errorMsg">Suitability code is required.</p>
+          )}
         </div>
         <div className="form-control">
           <label>TfL Security Classification</label>
-          <input type="text" {...register("project")} name='project' />
+          <input type='securityclass' {...register('securityclass', {
+            required: true
+          })} name='securityclass' />
+          {errors.securityclass && errors.securityclass.type === "required" && (
+            <p className="errorMsg">Security class is required.</p>
+          )}
         </div>
         <div className="form-control">
           <label>Project Stage</label>
-          <input type="text" {...register("project")} name='project' />
+          <input type='projstage' {...register('projstage', {
+            required: true
+          })} name='projstage' />
+          {errors.projstage && errors.projstage.type === "required" && (
+            <p className="errorMsg">Project stage is required.</p>
+          )}
         </div>
         <div className="form-control">
           <label>Handover Information</label>
-          <input type="text" {...register("project")} name='project' />
+          <input type='handoverinfo' {...register('handoverinfo', {
+            required: true
+          })} name='handoverinfo' />
+          {errors.handoverinfo && errors.handoverinfo.type === "required" && (
+            <p className="errorMsg">Handover information is required.</p>
+          )}
         </div>
         <div className="form-control">
           <label>Health &amp; Safety File</label>
-          <input type="text" {...register("project")} name='project' />
+          <input type='hsf' {...register('hsf', {
+            required: true
+          })} name='hsf' />
+          {errors.hsf && errors.hsf.type === "required" && (
+            <p className="errorMsg">REQUIRED!!!</p>
+          )}
         </div>
         <div className="form-control">
           <label>Requested by:</label>
-          <input type="text" {...register("project")} name='project' />
+          <input type='requested' {...register('requested', {
+            required: true
+          })} name='requested' />
+          {errors.purpOfIssue && errors.purpOfIssue.type === "required" && (
+            <p className="errorMsg">REQUIRED!!! - Who needs to see this number??</p>
+          )}
         </div>
         <div className="form-control">
           <label>Project Email Address</label>
-          <input type="text" {...register("project")} name='project' />
+          <input type='emailAddress' {...register('emailAddress', {
+            required: true
+          })} name='emailAddress' />
+          {errors.emailAddress && errors.emailAddress.type === "required" && (
+            <p className="errorMsg">Email address is required.</p>
+          )}
         </div>
         <div className="form-control">
           <label></label>
           <button type="submit">Send</button>
         </div>
-     </form>
-      
+      </form>
+
     </div>
   );
 }
