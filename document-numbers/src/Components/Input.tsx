@@ -1,4 +1,5 @@
-import React, { ChangeEventHandler } from 'react';
+import React, { ChangeEventHandler, useContext } from 'react';
+import { FormContext } from '../FormContext';
 
 interface InputProps {
     label: string;
@@ -58,7 +59,9 @@ const createInputComponent = ({ label, name, value, placeholder, required, type,
 }
 
 const Input = ({ label, name, value, placeholder, required, type, options, updateValue }: InputProps) => {
-    const componentElement = createInputComponent({ label, name,  value, placeholder, required, type, options, updateValue });
+    const formContext = useContext(FormContext)
+    options = formContext[name]?.options || options;
+    const componentElement = createInputComponent({ label, name, value, placeholder, required, type, options, updateValue });
 
     return (
         <div className="medium-6 cell">

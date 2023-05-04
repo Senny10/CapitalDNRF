@@ -1,4 +1,4 @@
-import React, {ChangeEventHandler} from 'react';
+import React, { ChangeEventHandler } from 'react';
 
 import Input from './Input';
 
@@ -25,8 +25,8 @@ interface FormProps {
 }
 
 const Form = ({ formState, setFormState }: FormProps) => {
-    const updateFormValue = 
-        (name: string): ChangeEventHandler<HTMLInputElement | HTMLSelectElement> => 
+    const updateFormValue =
+        (name: string): ChangeEventHandler<HTMLInputElement | HTMLSelectElement> =>
             (event) => {
                 setFormState({
                     ...formState,
@@ -44,7 +44,6 @@ const Form = ({ formState, setFormState }: FormProps) => {
                         value={formState.project}
                         placeholder='Select the project this document belongs to'
                         type='drop-down'
-                        options={[{ label: 'test', value: 'test' }]}
                         updateValue={updateFormValue('project')}
                     />
                     <Input
@@ -60,98 +59,81 @@ const Form = ({ formState, setFormState }: FormProps) => {
                         value={formState.documentRevision}
                         placeholder='What revision stage is the document at?'
                         type='drop-down'
-                        options={[
-                            { label: 'P01 - Drawing Draft', value: 'P01' },
-                            { label: 'C01 - Technical Document Draft', value: 'C01' },
-                            { label: '01 - External Technical Document', value: '01' },
-                        ]}
                         updateValue={updateFormValue('documentRevision')}
                     />
                     <Input
-                        label= 'Purpose of Issue'
-                        name= 'purposeOfIssue' 
-                        value= {formState.purposeOfIssue}
-                        type= 'drop-down'
-                        options={[
-                            {label: 'For Information', value: 'For Information'},
-                            {label: 'For Acceptance', value: 'For Acceptance'},
-                    ]}
+                        label='Purpose of Issue'
+                        name='purposeOfIssue'
+                        value={formState.purposeOfIssue}
+                        type='drop-down'
                         updateValue={updateFormValue('purposeOfIssue')}
                     />
                     <Input
                         label='Asset Class'
                         name='assetClass'
-                        value= {formState.assetClass}
+                        value={formState.assetClass}
                         type='drop-down'
-                        options={[]}
                         updateValue={updateFormValue('assetClass')}
                     />
                     <Input
                         label='Information Type'
                         name='infotype'
-                        value= {formState.infotype}
+                        value={formState.infotype}
                         type='drop-down'
-                        options={[]}
                         updateValue={updateFormValue('infotype')}
                     />
                     <Input
                         label='Discipline'
                         name='discipline'
-                        value= {formState.discipline}
+                        value={formState.discipline}
                         type='drop-down'
-                        options={[]}
                         updateValue={updateFormValue('discipline')}
                     />
                     <Input
                         label='Suitability'
                         name='suitability'
-                        value= {formState.suitability}
+                        value={formState.suitability}
                         type='drop-down'
-                        options={[]}
                         updateValue={updateFormValue('suitability')}
                     />
                     <Input
                         label='Security Class'
                         name='securityClass'
-                        value= {formState.securityClass}
+                        value={formState.securityClass}
                         type='drop-down'
-                        options={[]}
                         updateValue={updateFormValue('securityClass')}
                     />
                     <Input
                         label='Project Stage'
                         name='projectStage'
-                        value= {formState.projectStage}
+                        value={formState.projectStage}
                         type='drop-down'
-                        options={[]}
                         updateValue={updateFormValue('projectStage')}
                     />
                     <Input
                         label='Handover Information'
                         name='handoverInformation'
-                        value= {formState.handoverInformation}
+                        value={formState.handoverInformation}
                         type='drop-down'
-                        options={[]}
                         updateValue={updateFormValue('handoverInformation')}
                     />
                     <Input
                         label='Health & Safety File'
                         name='hsf'
-                        value= {formState.hsf}
+                        value={formState.hsf}
                         type='drop-down'
-                        options={[]}
                         updateValue={updateFormValue('hsf')}
                     />
                     <Input
                         label='Requested By:'
                         name='requested'
-                        value= {formState.requested}
+                        value={formState.requested}
                         updateValue={updateFormValue('requested')}
                     />
                     <Input
                         label='Email Address'
                         name='emailAddress'
-                        value='emailAddress'
+                        value={formState.emailAddress}
                         updateValue={updateFormValue('emailAddress')}
                     />
                 </div>
