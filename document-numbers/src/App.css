@@ -1,4 +1,4 @@
-.form-control {
+/* .form-control {
   display: flex;
   flex-direction: column;
   margin-bottom: 10px;
@@ -17,6 +17,11 @@ button {
 
 .App {
   text-align: center;
+}
+
+.errorMsg {
+  color: red;
+  font-weight: bold;
 }
 
 .App-logo {
@@ -52,4 +57,4 @@ button {
   to {
     transform: rotate(360deg);
   }
-}
+} */

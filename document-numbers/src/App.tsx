@@ -1,25 +1,37 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import './App.css';
+import Form, { FormState } from './Components/Form';
 
 function App() {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
-  const onSubmit = (data: any) => {
-    console.log(data);
-  };
+  // const {
+  //   register,
+  //   handleSubmit,
+  //   formState: { errors },
+  // } = useForm();
+
+  // const onSubmit = (data: any) => {
+  //   console.log(data);
+  // };
+
+  const [formState, setFormState] = useState<FormState>({
+    project: '',
+    documentTitle: '',
+    documentRevision: '',
+    purposeOfIssue: '',
+  });
+
   return (
     <div className="App">
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <Form formState={formState} setFormState={setFormState} />
+
+      {/* <form onSubmit={handleSubmit(onSubmit)}>
         <div className="form-control">
           <label>Project</label>
           <input type='project' {...register('project', {
             required: true
           })} name='project' />
-          {errors.project && errors.project.type === "required" && (
+          {errors.project?.type === "required" && (
             <p className="errorMsg">Project number is required.</p>
           )}
         </div>
@@ -28,16 +40,16 @@ function App() {
           <input type='docrev' {...register('docrev', {
             required: true
           })} name='docrev' />
-          {errors.docrev && errors.docrev.type === "required" && (
+          {errors.docrev?.type === "required" && (
             <p className="errorMsg">Document revision is required.</p>
           )}
         </div>
-        <div className="form-control">
+        <div className="form-\control">
           <label>Document Title</label>
           <input type='doctitle' {...register('doctitle', {
             required: true
           })} name='doctitle' />
-          {errors.doctitle && errors.doctitle.type === "required" && (
+          {errors.doctitle?.type === "required" && (
             <p className="errorMsg">Document title is required.</p>
           )}
         </div>
@@ -46,7 +58,7 @@ function App() {
           <input type='purpOfIssue' {...register('purpOfIssue', {
             required: true
           })} name='purpOfIssue' />
-          {errors.purpOfIssue && errors.purpOfIssue.type === "required" && (
+          {errors.purpOfIssue?.type === "required" && (
             <p className="errorMsg">Document purpose of issue is required.</p>
           )}
         </div>
@@ -55,7 +67,7 @@ function App() {
           <input type='assetclass' {...register('assetclass', {
             required: true
           })} name='assetclass' />
-          {errors.assetclass && errors.assetclass.type === "required" && (
+          {errors.assetclass?.type === "required" && (
             <p className="errorMsg">Document asset case required.</p>
           )}
         </div>
@@ -64,7 +76,7 @@ function App() {
           <input type='infotype' {...register('infotype', {
             required: true
           })} name='infotype' />
-          {errors.infotype && errors.infortype.type === "required" && (
+          {errors.infotype?.type === "required" && (
             <p className="errorMsg">Document type is required.</p>
           )}
         </div>
@@ -73,7 +85,7 @@ function App() {
           <input type='discipline' {...register('discipline', {
             required: true
           })} name='discipline' />
-          {errors.discipline && errors.discipline.type === "required" && (
+          {errors.discipline?.type === "required" && (
             <p className="errorMsg">Document discipline of issue is required.</p>
           )}
         </div>
@@ -82,7 +94,7 @@ function App() {
           <input type='suitability' {...register('suitability', {
             required: true
           })} name='suitability' />
-          {errors.suitability && errors.suitability.type === "required" && (
+          {errors.suitability?.type === "required" && (
             <p className="errorMsg">Suitability code is required.</p>
           )}
         </div>
@@ -91,7 +103,7 @@ function App() {
           <input type='securityclass' {...register('securityclass', {
             required: true
           })} name='securityclass' />
-          {errors.securityclass && errors.securityclass.type === "required" && (
+          {errors.securityclass?.type === "required" && (
             <p className="errorMsg">Security class is required.</p>
           )}
         </div>
@@ -100,7 +112,7 @@ function App() {
           <input type='projstage' {...register('projstage', {
             required: true
           })} name='projstage' />
-          {errors.projstage && errors.projstage.type === "required" && (
+          {errors.projstage?.type === "required" && (
             <p className="errorMsg">Project stage is required.</p>
           )}
         </div>
@@ -109,7 +121,7 @@ function App() {
           <input type='handoverinfo' {...register('handoverinfo', {
             required: true
           })} name='handoverinfo' />
-          {errors.handoverinfo && errors.handoverinfo.type === "required" && (
+          {errors.handoverinfo?.type === "required" && (
             <p className="errorMsg">Handover information is required.</p>
           )}
         </div>
@@ -118,7 +130,7 @@ function App() {
           <input type='hsf' {...register('hsf', {
             required: true
           })} name='hsf' />
-          {errors.hsf && errors.hsf.type === "required" && (
+          {errors.hsf?.type === "required" && (
             <p className="errorMsg">REQUIRED!!!</p>
           )}
         </div>
@@ -127,7 +139,7 @@ function App() {
           <input type='requested' {...register('requested', {
             required: true
           })} name='requested' />
-          {errors.purpOfIssue && errors.purpOfIssue.type === "required" && (
+          {errors.requested?.type === "required" && (
             <p className="errorMsg">REQUIRED!!! - Who needs to see this number??</p>
           )}
         </div>
@@ -136,7 +148,7 @@ function App() {
           <input type='emailAddress' {...register('emailAddress', {
             required: true
           })} name='emailAddress' />
-          {errors.emailAddress && errors.emailAddress.type === "required" && (
+          {errors.emailAddress?.type === "required" && (
             <p className="errorMsg">Email address is required.</p>
           )}
         </div>
@@ -144,7 +156,7 @@ function App() {
           <label></label>
           <button type="submit">Send</button>
         </div>
-      </form>
+      </form> */}
 
     </div>
   );
