@@ -7,6 +7,16 @@ export interface FormState {
     documentTitle: string;
     documentRevision: string;
     purposeOfIssue: string;
+    assetClass: string;
+    infotype: string;
+    discipline: string;
+    suitability: string;
+    securityClass: string;
+    projectStage: string;
+    handoverInformation: string;
+    hsf: string;
+    requested: string;
+    emailAddress: string;
 }
 
 interface FormProps {
@@ -58,15 +68,91 @@ const Form = ({ formState, setFormState }: FormProps) => {
                         updateValue={updateFormValue('documentRevision')}
                     />
                     <Input
-                    label= 'Purpose of Issue'
-                    name= 'purposeOfIssue' 
-                    value= {formState.purposeOfIssue}
-                    type= 'drop-down'
-                    options={[
-                        {label: 'For Information', value: 'For Information'},
-                        {label: 'For Acceptance', value: 'For Acceptance'},
+                        label= 'Purpose of Issue'
+                        name= 'purposeOfIssue' 
+                        value= {formState.purposeOfIssue}
+                        type= 'drop-down'
+                        options={[
+                            {label: 'For Information', value: 'For Information'},
+                            {label: 'For Acceptance', value: 'For Acceptance'},
                     ]}
-                    updateValue={updateFormValue('purposeOfIssue')}
+                        updateValue={updateFormValue('purposeOfIssue')}
+                    />
+                    <Input
+                        label='Asset Class'
+                        name='assetClass'
+                        value= {formState.assetClass}
+                        type='drop-down'
+                        options={[]}
+                        updateValue={updateFormValue('assetClass')}
+                    />
+                    <Input
+                        label='Information Type'
+                        name='infotype'
+                        value= {formState.infotype}
+                        type='drop-down'
+                        options={[]}
+                        updateValue={updateFormValue('infotype')}
+                    />
+                    <Input
+                        label='Discipline'
+                        name='discipline'
+                        value= {formState.discipline}
+                        type='drop-down'
+                        options={[]}
+                        updateValue={updateFormValue('discipline')}
+                    />
+                    <Input
+                        label='Suitability'
+                        name='suitability'
+                        value= {formState.suitability}
+                        type='drop-down'
+                        options={[]}
+                        updateValue={updateFormValue('suitability')}
+                    />
+                    <Input
+                        label='Security Class'
+                        name='securityClass'
+                        value= {formState.securityClass}
+                        type='drop-down'
+                        options={[]}
+                        updateValue={updateFormValue('securityClass')}
+                    />
+                    <Input
+                        label='Project Stage'
+                        name='projectStage'
+                        value= {formState.projectStage}
+                        type='drop-down'
+                        options={[]}
+                        updateValue={updateFormValue('projectStage')}
+                    />
+                    <Input
+                        label='Handover Information'
+                        name='handoverInformation'
+                        value= {formState.handoverInformation}
+                        type='drop-down'
+                        options={[]}
+                        updateValue={updateFormValue('handoverInformation')}
+                    />
+                    <Input
+                        label='Health & Safety File'
+                        name='hsf'
+                        value= {formState.hsf}
+                        type='drop-down'
+                        options={[]}
+                        updateValue={updateFormValue('hsf')}
+                    />
+                    <Input
+                        label='Requested By:'
+                        name='requested'
+                        value= {formState.requested}
+                        updateValue={updateFormValue('requested')}
+                    />
+                    <Input
+                        label='Email Address'
+                        name='emailAddress'
+                        value='emailAddress'
+                        updateValue={updateFormValue('emailAddress')}
                     />
                 </div>
             </div>
