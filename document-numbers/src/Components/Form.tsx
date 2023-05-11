@@ -1,5 +1,6 @@
 import React, { ChangeEventHandler } from 'react';
 
+import Button from '@mui/material/Button';
 import Input from './Input';
 
 export interface FormState {
@@ -133,9 +134,13 @@ const Form = ({ formState, setFormState }: FormProps) => {
                     <Input
                         label='Email Address'
                         name='emailAddress'
+                        required
                         value={formState.emailAddress}
                         updateValue={updateFormValue('emailAddress')}
                     />
+                </div>
+                <div>
+                    <Button variant="contained">Send</Button>
                 </div>
             </div>
         </form>
