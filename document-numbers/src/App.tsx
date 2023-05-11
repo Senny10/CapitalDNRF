@@ -21,10 +21,35 @@ function App() {
         { label: 'For Acceptance', value: 'For Acceptance' },
       ],
     },
+    assetClass: {
+      options: [{ label: 'Asset Class not Applicable', value: 'Asset Class not Applicable' }]
+    },
+    infotype: {
+      options: [{ label: 'DOC: Document', value: 'Document' }]
+    },
+    discipline: {
+      options: [{ label: 'TEST', value: 'TEST' }]
+    },
+    suitability: {
+      options: [{ label: 'A: Authorised and Accepted', value: 'A' }]
+    },
+    securityClass: {
+      options: [{ label: 'TfL Confidential', value: 'Confidential' }]
+    },
     projectStage: {
-      options: [{label: '', value: ''}]
-    }
-  }))
+      options: [{ label: 'Stage 0: Initial Proposition', value: '0' }]
+    },
+    handoverInformation: {
+      options: [{ label: 'Yes', value: 'Yes' },
+      { label: 'No', value: 'No' },
+      ],
+    },
+    hsf: {
+      options: [{ label: 'Yes', value: 'Yes' },
+      { label: 'No', value: 'No' },
+      ],
+    },
+  }));
 
   const formConfig = JSON.parse(window.localStorage.getItem('formConfig') || '{}');
 
