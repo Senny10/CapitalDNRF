@@ -1,6 +1,4 @@
 import React, { ChangeEventHandler } from 'react';
-
-import Button from '@mui/material/Button';
 import Input from './Input';
 
 export interface FormState {
@@ -34,9 +32,12 @@ const Form = ({ formState, setFormState }: FormProps) => {
                     [name]: event.target.value,
                 });
             };
-
+    const handleSubmit = (e) => {
+                e.preventDefault();
+                console.log('You clicked submit.');
+              };
     return (
-        <form>
+        <form onSubmit={handleSubmit}>
             <div className="grid-container">
                 <div className="grid-x grid-padding-x">
                     <Input
@@ -139,10 +140,9 @@ const Form = ({ formState, setFormState }: FormProps) => {
                         updateValue={updateFormValue('emailAddress')}
                     />
                 </div>
-                <div>
-                    <Button variant="contained">Send</Button>
-                </div>
+               
             </div>
+          
         </form>
     );
 };
