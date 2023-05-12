@@ -1,4 +1,6 @@
 import React, { ChangeEventHandler } from 'react';
+import { Project } from '../App';
+import DropDown from './DropDown';
 import Input from './Input';
 
 export interface FormState {
@@ -29,120 +31,125 @@ const Form = ({ formState, setFormState }: FormProps) => {
             (event) => {
                 setFormState({
                     ...formState,
-                    [name]: event.target.value,
+                    [name]: event.currentTarget.value,
                 });
-            };
-    const handleSubmit = (e) => {
-                e.preventDefault();
-                console.log('You clicked submit.');
-              };
+            }; // useCallback?
+
+    const handleSubmit: React.FormEventHandler<HTMLFormElement> = (e) => {
+        e.preventDefault();
+        console.log('You clicked submit.');
+    };
+
+
+    const onProjectChange = async (event: React.ChangeEvent<HTMLSelectElement>) => {
+        // read the project
+        const projectId = event.currentTarget.value;
+        const projects: Project[] = JSON.parse(window.localStorage.getItem('APPNAME.projects') || '[]');
+        const project = projects.find(p => p.number === projectId);
+        setFormState({ ...formState, emailAddress: project?.email || '', project: projectId });
+
+    };
+
     return (
         <form onSubmit={handleSubmit}>
             <div className="grid-container">
                 <div className="grid-x grid-padding-x">
-                    <Input
+                    <DropDown
                         label='Project'
                         name='project'
                         value={formState.project}
                         placeholder='Select the project this document belongs to'
-                        type='drop-down'
-                        updateValue={updateFormValue('project')}
+                        updateValue={onProjectChange}
                     />
                     <Input
+                        type="text"
                         label='Document Title'
                         name='documentTitle'
                         value={formState.documentTitle}
                         placeholder='Give your document a title'
-                        updateValue={updateFormValue('documentTitle')}
+                        onChange={updateFormValue('documentTitle')}
                     />
-                    <Input
+                    <DropDown
                         label='Document Revision'
                         name='documentRevision'
                         value={formState.documentRevision}
                         placeholder='What revision stage is the document at?'
-                        type='drop-down'
                         updateValue={updateFormValue('documentRevision')}
+
                     />
-                    <Input
+                    <DropDown
                         label='Purpose of Issue'
                         name='purposeOfIssue'
                         value={formState.purposeOfIssue}
-                        type='drop-down'
                         updateValue={updateFormValue('purposeOfIssue')}
                     />
-                    <Input
+                    <DropDown
                         label='Asset Class'
                         name='assetClass'
                         value={formState.assetClass}
-                        type='drop-down'
                         updateValue={updateFormValue('assetClass')}
                     />
-                    <Input
+                    <DropDown
                         label='Information Type'
                         name='infotype'
                         value={formState.infotype}
-                        type='drop-down'
                         updateValue={updateFormValue('infotype')}
                     />
-                    <Input
+                    <DropDown
                         label='Discipline'
                         name='discipline'
                         value={formState.discipline}
-                        type='drop-down'
                         updateValue={updateFormValue('discipline')}
                     />
-                    <Input
+                    <DropDown
                         label='Suitability'
                         name='suitability'
                         value={formState.suitability}
-                        type='drop-down'
                         updateValue={updateFormValue('suitability')}
                     />
-                    <Input
+                    <DropDown
                         label='Security Class'
                         name='securityClass'
                         value={formState.securityClass}
-                        type='drop-down'
                         updateValue={updateFormValue('securityClass')}
                     />
-                    <Input
+                    <DropDown
                         label='Project Stage'
                         name='projectStage'
                         value={formState.projectStage}
-                        type='drop-down'
                         updateValue={updateFormValue('projectStage')}
                     />
-                    <Input
+                    <DropDown
                         label='Handover Information'
                         name='handoverInformation'
                         value={formState.handoverInformation}
-                        type='drop-down'
                         updateValue={updateFormValue('handoverInformation')}
                     />
-                    <Input
+                    <DropDown
                         label='Health & Safety File'
                         name='hsf'
                         value={formState.hsf}
-                        type='drop-down'
                         updateValue={updateFormValue('hsf')}
                     />
                     <Input
+                        type="text"
                         label='Requested By:'
                         name='requested'
                         value={formState.requested}
-                        updateValue={updateFormValue('requested')}
+                        onChange={updateFormValue('requested')}
                     />
                     <Input
+                        type="email"
                         label='Email Address'
                         name='emailAddress'
                         required
                         value={formState.emailAddress}
-                        updateValue={updateFormValue('emailAddress')}
+                        onChange={updateFormValue('emailAddress')}
                     />
                 </div>
-               
+
             </div>
-          
+
         </form>
     );
 };

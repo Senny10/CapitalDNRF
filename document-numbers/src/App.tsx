@@ -3,10 +3,20 @@ import './App.css';
 import Form, { FormState } from './Components/Form';
 import { FormContext } from './FormContext';
 
-function App() {
+export type Project = {
+  number: string;
+  name: string;
+  email: string;
+}
+type Props = {
+  projects: Project[];
+}
+function App({ projects }: Props) {
+  // this is global state so you should set it up in outside of your application.
+  // make your app "stateless" (receive props and render, or use a provider/consumer pattern)
   window.localStorage.setItem('formConfig', JSON.stringify({
     project: {
-      options: [{ value: 'TEST', label: 'TEST LABEL' }]
+      options: projects.map(p => ({ label: p.name, value: p.number }))
     },
     documentRevision: {
       options: [
@@ -52,29 +62,38 @@ function App() {
   }));
 
   const formConfig = JSON.parse(window.localStorage.getItem('formConfig') || '{}');
+  if (!window.localStorage.getItem('formInitialState')) {
+    window.localStorage.setItem('formInitialState', JSON.stringify({
+      project: '',
+      documentTitle: '',
+      documentRevision: '',
+      purposeOfIssue: '',
+      assetClass: '',
+      infotype: '',
+      discipline: '',
+      suitability: '',
+      securityClass: '',
+      projectStage: '',
+      handoverInformation: '',
+      hsf: '',
+      requested: '',
+      emailAddress: '',
+    }));
 
-  const [formState, setFormState] = useState<FormState>({
-    project: '',
-    documentTitle: '',
-    documentRevision: '',
-    purposeOfIssue: '',
-    assetClass: '',
-    infotype: '',
-    discipline: '',
-    suitability: '',
-    securityClass: '',
-    projectStage: '',
-    handoverInformation: '',
-    hsf: '',
-    requested: '',
-    emailAddress: '',
+  }
+  const initialState = JSON.parse(window.localStorage.getItem('formInitialState') || '{}');
 
-  });
+  const [formState, setFormState] = useState<FormState>(initialState);
+
+  const onUpdate = (data: any) => {
+    setFormState(data);
+    window.localStorage.setItem('formInitialState', JSON.stringify(data));
+  }
 
   return (
     <div className="App">
       <FormContext.Provider value={formConfig}>
-        <Form formState={formState} setFormState={setFormState} />
+        <Form formState={formState} setFormState={onUpdate} />
       </FormContext.Provider>
     </div>
   );
