@@ -2,7 +2,6 @@ import React, { ChangeEventHandler } from 'react';
 import { Project } from '../App';
 import DropDown from './DropDown';
 import Input from './Input';
-
 export interface FormState {
     project: string;
     documentTitle: string;
@@ -38,6 +37,7 @@ const Form = ({ formState, setFormState }: FormProps) => {
     const handleSubmit: React.FormEventHandler<HTMLFormElement> = (e) => {
         e.preventDefault();
         console.log('You clicked submit.');
+       
     };
 
 
@@ -49,9 +49,9 @@ const Form = ({ formState, setFormState }: FormProps) => {
         setFormState({ ...formState, emailAddress: project?.email || '', project: projectId });
 
     };
-
+ console.log(formState);
     return (
-        <form onSubmit={handleSubmit}>
+        < form onSubmit={handleSubmit}>
             <div className="grid-container">
                 <div className="grid-x grid-padding-x">
                     <DropDown
@@ -147,7 +147,10 @@ const Form = ({ formState, setFormState }: FormProps) => {
                         onChange={updateFormValue('emailAddress')}
                     />
                 </div>
-
+                <div>
+                    <button className="submit success button"> SEND </button>
+                </div>
+               
             </div>
 
         </form>
