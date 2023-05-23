@@ -1,5 +1,5 @@
 import React, { ChangeEventHandler, useContext } from "react";
-import { FormContext } from "../FormContext";
+import { FormConfigurationContext } from "../FormContext";
 
 interface InputProps {
 	label: string;
@@ -23,7 +23,7 @@ const DropDown = ({
 	options,
 	updateValue,
 }: InputProps) => {
-	const formContext = useContext(FormContext);
+	const formContext = useContext(FormConfigurationContext);
 	options = formContext[name]?.options || options;
 
 	return (

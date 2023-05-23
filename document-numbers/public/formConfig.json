@@ -1,0 +1,72 @@
+{
+    "project": {
+      "options": [
+        {
+            "value": "P0001",
+            "label": "Project 1 (P0001)",
+            "updateFields": [
+                {"field": "emailAddress", "value": "p1@example.com"}
+            ]
+        },
+        {
+            "value": "P0002",
+            "label": "Project 2 (P0002)",
+            "updateFields": [
+                {"field": "emailAddress", "value": "p2@example.com"},
+                {"field": "documentRevision", "value": "P01"}
+            ]
+        }
+    ]
+    },
+    "documentRevision": {
+      "options": [
+        { "label": "P01 - Drawing Draft", "value": "P01" },
+        { "label": "C01 - Technical Document Draft", "value": "C01" },
+        { "label": "01 - External Technical Document", "value": "01" }
+      ]
+    },
+    "purposeOfIssue": {
+      "options": [
+        { "label": "For Information", "value": "For Information" },
+        { "label": "For Acceptance", "value": "For Acceptance" }
+      ]
+    },
+    "assetClass": {
+      "options": [
+        { "label": "Asset Class not Applicable", "value": "Asset Class not Applicable" }
+      ]
+    },
+    "infotype": {
+      "options": [{ "label": "DOC: Document", "value": "Document" }]
+    },
+    "discipline": {
+      "options": [{ "label": "TEST", "value": "TEST" }]
+    },
+    "suitability": {
+      "options": [{ "label": "A: Authorised and Accepted", "value": "A" }]
+    },
+    "securityClass": {
+      "options": [{ "label": "TfL Confidential", "value": "Confidential" }]
+    },
+    "projectStage": {
+      "options": [{ "label": "Stage 0: Initial Proposition", "value": "0" }]
+    },
+    "handoverInformation": {
+      "options": [
+        { 
+            "label": "Yes", 
+            "value": "Yes",
+            "updateFields": [
+                {"field": "emailAddress", "value": "some-handover-person@example.com" }
+            ]
+        },
+        { "label": "No", "value": "No" }
+      ]
+    },
+    "hsf": {
+      "options": [
+        { "label": "Yes", "value": "Yes" },
+        { "label": "No", "value": "No" }
+      ]
+    }
+}

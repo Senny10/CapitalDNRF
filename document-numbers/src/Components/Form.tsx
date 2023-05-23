@@ -1,7 +1,8 @@
-import React, { ChangeEventHandler } from 'react';
-import { Project } from '../App';
+import React, { ChangeEventHandler, useContext } from 'react';
+import {FormConfigurationContext} from '../FormContext';
 import DropDown from './DropDown';
 import Input from './Input';
+
 export interface FormState {
     project: string;
     documentTitle: string;
@@ -25,33 +26,32 @@ interface FormProps {
 }
 
 const Form = ({ formState, setFormState }: FormProps) => {
+    const formConfiguration = useContext(FormConfigurationContext);
+
     const updateFormValue =
-        (name: string): ChangeEventHandler<HTMLInputElement | HTMLSelectElement> =>
+        (name: keyof FormState): ChangeEventHandler<HTMLInputElement | HTMLSelectElement> =>
             (event) => {
-                setFormState({
-                    ...formState,
-                    [name]: event.currentTarget.value,
+                const newFormState = {...formState};
+                const {value} = event.currentTarget;
+
+                newFormState[name] = value;
+
+                const updates = formConfiguration[name]?.options.find(o => o.value === value)?.updateFields || [];
+
+                updates.forEach(update => {
+                    newFormState[update.field as keyof FormState] = update.value;
                 });
+
+                setFormState(newFormState);
             }; // useCallback?
 
     const handleSubmit: React.FormEventHandler<HTMLFormElement> = (e) => {
         e.preventDefault();
         console.log('You clicked submit.');
-       
     };
 
-
-    const onProjectChange = async (event: React.ChangeEvent<HTMLSelectElement>) => {
-        // read the project
-        const projectId = event.currentTarget.value;
-        const projects: Project[] = JSON.parse(window.localStorage.getItem('APPNAME.projects') || '[]');
-        const project = projects.find(p => p.number === projectId);
-        setFormState({ ...formState, emailAddress: project?.email || '', project: projectId });
-
-    };
- console.log(formState);
     return (
-        < form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit}>
             <div className="grid-container">
                 <div className="grid-x grid-padding-x">
                     <DropDown
@@ -59,7 +59,7 @@ const Form = ({ formState, setFormState }: FormProps) => {
                         name='project'
                         value={formState.project}
                         placeholder='Select the project this document belongs to'
-                        updateValue={onProjectChange}
+                        updateValue={updateFormValue('project')}
                     />
                     <Input
                         type="text"
@@ -75,7 +75,6 @@ const Form = ({ formState, setFormState }: FormProps) => {
                         value={formState.documentRevision}
                         placeholder='What revision stage is the document at?'
                         updateValue={updateFormValue('documentRevision')}
-
                     />
                     <DropDown
                         label='Purpose of Issue'

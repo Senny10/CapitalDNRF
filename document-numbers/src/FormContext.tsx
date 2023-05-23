@@ -1,12 +1,16 @@
 import { createContext } from "react";
 
-interface FormContextInterface {
+export interface FormConfigurationContextInterface {
     [name: string]: {
         options: Array<{
             value: string;
             label: string;
+            updateFields?: Array<{
+                field: string;
+                value: string;
+            }>;
         }>
     };
 }
 
-export const FormContext = createContext<FormContextInterface>({});
+export const FormConfigurationContext = createContext<FormConfigurationContextInterface>({});
